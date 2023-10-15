@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="exercise_1">Exercise 1</string>
+    <string name="exercise_2">Exercise 2</string>
+    <string name="exercise_3">Exercise 3</string>
+    <string name="clear">C</string>
+    <string name="backspace">Del</string>
+    <string name="divide">/</string>
+    <string name="square">Square</string>
+    <string name="sqrt">sqrt</string>
+    <string name="openBracket">(</string>
+    <string name="closeBracket">)</string>
+    <string name="history">History</string>
+    <string name="posneg">posneg</string>
+</resources>
