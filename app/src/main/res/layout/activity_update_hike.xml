@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bgLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"><LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/bt_close"
+            android:layout_width="?android:attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/grey_60"
+            app:srcCompat="@drawable/ic_chevron_left"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:layout_width="302dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Update Hike"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/black"
+            app:fontFamily="sans-serif-medium" />
+
+        <ImageButton
+            android:id="@+id/btn_update"
+            android:layout_width="?android:attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/grey_60"
+            app:srcCompat="@drawable/ic_done"
+            tools:ignore="UseAppTint" />
+
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:scrollingCache="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/spacing_mxlarge"
+            android:paddingTop="@dimen/spacing_medium"
+            android:paddingRight="@dimen/spacing_mxlarge"
+            android:paddingBottom="@dimen/spacing_xxlarge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hike Image"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:background="@drawable/edit_text_round_bg_outline"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/spacing_large">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@color/grey_3">
+
+                    <ImageView
+                        android:id="@+id/hike_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/ic_photo"
+                        tools:ignore="UseAppTint" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:text="Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:background="@color/grey_3"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hike_name"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_round_bg_outline"
+                    android:hint="Enter name here..."
+                    android:textColorHint="@color/grey_50" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:text="Location"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:backgroundTint="@color/white"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <AutoCompleteTextView
+                    android:background="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:id="@+id/hike_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    tools:text="Inca Trail" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:text="Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hike_date_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawableEnd="@drawable/ic_arrow_drop_grey"
+                    android:drawableRight="@drawable/ic_arrow_drop_grey"
+                    android:focusable="false"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:singleLine="true"
+                    android:text="05 October 2023" />
+
+
+
+            <TextView
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Length of hike"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperTextTextColor="@color/black"
+                app:suffixTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:textColor="@color/black"
+                    android:id="@+id/hike_length_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="is parking available"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/radioError"
+                android:visibility="gone"
+                android:text="This field is required"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/red_400" />
+            <RadioGroup
+                android:id="@+id/hike_parking_available"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_basic_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingHorizontal="@dimen/spacing_medium"
+                    android:paddingVertical="@dimen/spacing_middle"
+                    android:text="Yes"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    app:buttonTint="@color/colorPrimary" />
+
+                <RadioButton
+                    android:id="@+id/rb_basic_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:paddingHorizontal="@dimen/spacing_medium"
+                    android:paddingVertical="@dimen/spacing_middle"
+                    android:text="No"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    app:buttonTint="@color/colorPrimary" />
+
+            </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:text="Level of difficulties"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/hike_difficulties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:max="100"
+                android:progress="50"
+                android:thumb="@drawable/seek_thumb_accent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:text="Description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:background="@color/grey_3"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hike_description"
+                    textColor="@color/black"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_round_bg_outline"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:lines="4"
+                    android:hint="@string/medium_lorem_ipsum"
+                    android:textColor="@color/grey_60" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_mlarge"
+                android:text="Tags"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:background="@color/grey_3"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hike_tags"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/edit_text_round_bg_outline"
+                    android:gravity="start"
+
+                    android:hint="Input tag separated with comma"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:textColorHint="@color/grey_50" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_observation"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:gravity="center"
+                app:cornerRadius="0dp"
+                app:iconTint="@android:color/white"
+                app:icon="@drawable/ic_add"
+                android:text="ADD OBSERVATION" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_view_observation"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:gravity="center"
+                app:iconTint="@android:color/white"
+                app:icon="@drawable/ic_view"
+                app:cornerRadius="0dp"
+                android:text="VIEW OBSERVATION" />
+            <com.google.android.material.button.MaterialButton
+                app:cornerRadius="0dp"
+                android:id="@+id/btn_delete"
+                android:layout_marginTop="@dimen/spacing_large"
+                app:iconTint="@android:color/white"
+                app:icon="@drawable/ic_delete"
+                android:backgroundTint="@color/red_400"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="DELETE HIKE" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+    <!--bottom sheet container-->
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/bottom_sheet_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,79 +1,582 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="end">
 
-
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/parent_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
-
-        <RelativeLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@android:color/white"
+                app:contentInsetStartWithNavigation="0dp"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/Toolbar.Light" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/spacing_large"
+            android:scrollbars="vertical"
+            android:scrollingCache="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="false">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
+                android:id="@+id/player_control"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ex1"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/btn_rounded_primary_outline_flex"
-                    android:fontFamily="@font/amazon"
-                    android:gravity="center"
-                    android:paddingHorizontal="@dimen/spacing_xlarge"
-                    android:paddingVertical="@dimen/spacing_middle"
-                    android:text="@string/exercise_1"
-                    android:textColor="@color/verification_txt_color" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/spacing_xlarge" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ex2"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@drawable/btn_rounded_primary_outline_flex"
-                    android:fontFamily="@font/amazon"
-                    android:gravity="center"
-                    android:paddingHorizontal="@dimen/spacing_xlarge"
-                    android:paddingVertical="@dimen/spacing_middle"
-                    android:text="@string/exercise_2"
-                    android:textColor="@color/verification_txt_color" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/spacing_xlarge" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ex3"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                <LinearLayout
+                    android:id="@+id/lyt_sheet_header_white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_rounded_primary_outline_flex"
-                    android:gravity="center"
-                    android:paddingVertical="@dimen/spacing_mlarge"
-                    android:text="@string/exercise_3"
-                    android:textColor="@color/verification_txt_color" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/bt_expand"
+                        android:layout_width="?android:attr/actionBarSize"
+                        android:layout_height="?android:attr/actionBarSize"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:padding="15dp"
+                        app:srcCompat="@drawable/ic_close"
+                        app:tint="@color/grey_80" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/grey_80" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/image_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@color/grey_20" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_5" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_smlarge"
+                        android:text="Information"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/grey_20" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:padding="18dp"
+                            app:srcCompat="@drawable/ic_location_outline"
+                            app:tint="@color/grey_40" />
+
+                        <TextView
+                            android:id="@+id/hike_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="740 Valencia St, CA"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_80" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:padding="18dp"
+                            app:srcCompat="@drawable/ic_near_me"
+                            app:tint="@color/grey_40" />
+
+                        <TextView
+                            android:id="@+id/hike_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Example Name"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_80" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:padding="18dp"
+                            app:srcCompat="@drawable/ic_airport_shuttle"
+                            app:tint="@color/grey_40" />
+
+                        <TextView
+                            android:id="@+id/hike_parking_available"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Parking Available"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_80" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:padding="18dp"
+                            app:srcCompat="@drawable/ic_calender"
+                            app:tint="@color/grey_40" />
+
+                        <TextView
+                            android:id="@+id/hike_date_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Wed, 10 AM - 9 PM"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_80" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:padding="18dp"
+                            app:srcCompat="@drawable/ic_label_outline"
+                            app:tint="@color/grey_40" />
+
+                        <TextView
+                            android:id="@+id/hike_difficulty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Add Label"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/grey_80" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="?android:attr/actionBarSize"
+                            android:layout_height="?android:attr/actionBarSize"
+                            android:padding="18dp"
+                            app:srcCompat="@drawable/ic_map"
+                            app:tint="@color/grey_40" />
+
+                        <TextView
+                            android:id="@+id/hike_lat_long"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="lat, long"
+                            android:textStyle="italic"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="@color/blue_800" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_update_hike"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/spacing_large"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:gravity="center"
+                            android:text="UPDATE HIKE"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            app:cornerRadius="0dp"
+                            app:icon="@drawable/ic_edit"
+                            app:iconTint="@android:color/white" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_view_observation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/spacing_large"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:gravity="center"
+                            android:text="VIEW OBSERVATIONS"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            app:cornerRadius="0dp"
+                            app:icon="@drawable/ic_view"
+                            app:iconTint="@android:color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_create_observation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/spacing_large"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:backgroundTint="@color/colorPrimary"
+                            android:gravity="center"
+                            android:text="CREATE OBSERVATIONS"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            app:cornerRadius="0dp"
+                            app:icon="@drawable/ic_add"
+                            app:iconTint="@android:color/white" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_delete_hike"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/spacing_large"
+                            android:layout_marginTop="@dimen/spacing_large"
+                            android:backgroundTint="@color/red_400"
+                            android:gravity="center"
+                            android:text="DELETE HIKE"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"
+                            app:cornerRadius="0dp"
+                            app:icon="@drawable/ic_delete"
+                            app:iconTint="@android:color/white" />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey_5" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_large"
+                        android:layout_marginBottom="@dimen/spacing_medium"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/spacing_smlarge"
+                        android:text="Description"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/hike_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/spacing_smlarge"
+                        android:paddingRight="@dimen/spacing_smlarge"
+                        android:text="@string/lorem_ipsum"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/grey_40" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:orientation="vertical"
+                        android:paddingVertical="@dimen/spacing_middle">
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
+        </androidx.core.widget.NestedScrollView>
 
-        </RelativeLayout>
+    </com.google.android.material.navigation.NavigationView>
+    <!--navigation drawer menu-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view_drawer"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:backgroundTint="@color/white"
+        android:fitsSystemWindows="false">
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_xxxlarge">
 
-</RelativeLayout>
+            <LinearLayout
+                android:id="@+id/lyt_home"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xmlarge"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingRight="@dimen/spacing_mlarge">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/grey_80"
+                    app:srcCompat="@drawable/ic_maps_home_work"
+                    tools:ignore="UseAppTint" />
+
+                <View
+                    android:layout_width="@dimen/spacing_mlarge"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/grey_80"
+                    app:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_middle" />
+
+            <LinearLayout
+                android:id="@+id/lyt_search_hike"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xmlarge"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingRight="@dimen/spacing_mlarge">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/grey_80"
+                    app:srcCompat="@drawable/ic_search"
+                    tools:ignore="UseAppTint" />
+
+                <View
+                    android:layout_width="@dimen/spacing_mlarge"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Search Hikes"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/grey_80"
+                    app:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_middle" />
+
+            <LinearLayout
+                android:id="@+id/lyt_add_hike"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xmlarge"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingRight="@dimen/spacing_mlarge">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/grey_80"
+                    app:srcCompat="@drawable/ic_add"
+                    tools:ignore="UseAppTint" />
+
+                <View
+                    android:layout_width="@dimen/spacing_mlarge"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Hike"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/grey_80"
+                    app:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_middle" />
+
+            <LinearLayout
+                android:id="@+id/lyt_delete_all_data"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xmlarge"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingRight="@dimen/spacing_mlarge">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/grey_80"
+                    app:srcCompat="@drawable/ic_delete"
+                    tools:ignore="UseAppTint" />
+
+                <View
+                    android:layout_width="@dimen/spacing_mlarge"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete all data"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/grey_80"
+                    app:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_middle" />
+
+            <LinearLayout
+                android:id="@+id/lyt_exit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/spacing_xmlarge"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/spacing_mlarge"
+                android:paddingRight="@dimen/spacing_mlarge">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/grey_80"
+                    app:srcCompat="@drawable/ic_exit"
+                    tools:ignore="UseAppTint" />
+
+                <View
+                    android:layout_width="@dimen/spacing_mlarge"
+                    android:layout_height="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exit"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textColor="@color/grey_80"
+                    app:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>
